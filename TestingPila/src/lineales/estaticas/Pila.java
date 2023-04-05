@@ -75,12 +75,13 @@ public class Pila {
     }
 
     public String toString() {
-        String cadena="";
-        
-        for (int i = tope; i >= 0; i--) {
-            cadena += "Pos"+i+": "+this.arrPila[i]+"\n";  
+        String cadena="(|";
+        int i=0;
+        while(i<=this.tope){
+            cadena= cadena+this.arrPila[i]+"|";
+            i++;
         }
-        
+        cadena=cadena+"|)";
         return cadena;
     }
 } 

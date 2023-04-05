@@ -18,7 +18,7 @@ public class Pila {
     }
 
     public boolean desapilar() {
-        boolean exito = false;
+        boolean exito = true;
         if (tope == null) {
             exito = false;
         } else {
@@ -26,7 +26,6 @@ public class Pila {
         }
         return exito;
     }
-
     public boolean esVacia(){
         boolean pilaVacia=false;
         if(this.tope==null){
@@ -62,26 +61,28 @@ public class Pila {
             //Al tope de la Pila Clon le asigna el elemento del Nodo y el puntero del tope actual
         }
     }
-    public String toString(){
-        String s="";
-        Nodo aux;
-        if(this.tope == null){
-            s= "Pila Vacia";
-        }else{
-            //Se ubica para recorrer la pila
-             aux =this.tope;
-            s="[";
-
-            while(aux!=null){
-                //Agrega el texto del nuevo elemento y avanza al siguiente nodo
-                s+= aux.getElem().toString();
-                aux=aux.getEnlace();
-                if(aux!=null){
-                    s+=",";
-                }
-                s+="]";
-            }
+    public String toString () {
+        String cadena;
+        cadena = "]";
+        Nodo nodoTemp = this.tope;
+        while (nodoTemp !=null) {
+            cadena = nodoTemp.getElem() + "|" + cadena  ; 
+            nodoTemp = nodoTemp.getEnlace();
         }
-        return s;
+        cadena = "[|"+cadena;
+        return cadena;
+      }
+    /*
+     *   public String toString () {
+    String cadena;
+    cadena = "]";
+    Nodo nodoTemp = this.tope;
+    while (nodoTemp !=null) {
+        cadena = nodoTemp.getElem() + "|" + cadena  ; 
+        nodoTemp = nodoTemp.getEnlace();
     }
+    cadena = "[|"+cadena;
+    return cadena;
+  }
+     */
 }
