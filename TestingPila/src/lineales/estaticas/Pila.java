@@ -40,12 +40,10 @@ public class Pila {
 
     public Object obtenerTope() {
         Object nuevoElem;
-
-        if (this.tope >= 0) {
-            nuevoElem = this.arrPila[tope];
-
-        } else {
+        if (this.esVacia()) {
             nuevoElem = null;
+        } else {
+            nuevoElem = this.arrPila[tope];
         }
         return nuevoElem;
     }
