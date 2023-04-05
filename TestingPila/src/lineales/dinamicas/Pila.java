@@ -1,7 +1,10 @@
 package lineales.dinamicas;
 
 public class Pila {
-
+/*****AUTORES******
+-Matias Tartaglia, Legajo FAI-3310
+-Ernesto Lopez, Legajo FAI-1990
+*/
     private Nodo tope;
 
     public Pila() {
