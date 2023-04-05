@@ -1,6 +1,9 @@
 package lineales.estaticas;
 public class Pila {
-
+/*****AUTORES
+-Matias Tartaglia, Legajo FAI-3310
+-Ernesto Lopez, Legajo FAI-1990
+*/
     private int tamanio = 10;
     private int tope;
     private Object[] arrPila;
