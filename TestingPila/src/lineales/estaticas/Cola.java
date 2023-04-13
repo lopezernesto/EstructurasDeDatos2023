@@ -1,36 +1,37 @@
 package lineales.estaticas;
 
 public class Cola {
+    
     private int tamanio=10;
     private int frente;
     private int fin;
     private Object[] array;
+
     public Cola(){
-        array = new Object[this.tamanio];
-        frente=0;
-        fin=0;
+        this.array = new Object[this.tamanio];
+        this.frente=0;
+        this.fin=0;
     }
 
     public boolean esVacia(){
-        boolean exit=false;
-        if(fin==frente){
-            exit=true;
-        }
-        return exit;
+        return this.fin == this.frente;
     }
     public boolean poner(Object elemento){
-        boolean exit= true;
+        boolean exit= false;
         if(this.llena()){
           exit=false;
         }else{
             array[fin]=elemento;
             fin=(fin+1)%tamanio;
+            exit=true;
         }
         return exit;
     }
+
     private boolean llena(){
-        return(frente==(fin+1)%tamanio);
+        return (fin+1)%tamanio==frente;
     }
+
     public void vaciar() {
         while (!esVacia()){
             this.array[this.frente] = null;
@@ -55,7 +56,11 @@ public class Cola {
         return s;
     }
     public Object obtenerFrente(){
-        return array[frente];
+        Object obj = null;
+        if (!esVacia()) {
+            obj = this.array[frente];
+        }
+        return obj;
     }
     public Cola clone(){
         Cola colaClon=new Cola();
@@ -68,4 +73,5 @@ public class Cola {
         }
         return colaClon;
     }
+    
 }

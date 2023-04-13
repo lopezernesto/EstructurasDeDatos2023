@@ -1,7 +1,7 @@
 
 package tests.lineales;
 import lineales.estaticas.Cola;
-// import lineales.dinamicas.Cola;
+//import lineales.dinamicas.Cola;
 
 public class TestingCola {
     
@@ -43,7 +43,7 @@ public class TestingCola {
 		System.out.println("\t--> " + q1.toString());
 		
 		System.out.println("Recupera frente espera 2 recupera \t\t\t" + (((int) q1.obtenerFrente() == 2) ? sOk : sErr));//corta aca
-
+		System.out.println("CORTE");
 		
 
 		System.out.print("Saca espera true: \t\t\t\t\t" + ((q1.sacar() == true) ? sOk : sErr));
