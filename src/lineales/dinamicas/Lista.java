@@ -4,10 +4,11 @@ public class Lista {
     private Nodo cabecera;
     private int longitud;
 
-    private Lista()){
+    private Lista(){
         this.cabecera=null;
         this.longitud=0;
     }
+    
     public boolean insertar(Object nuevoElem, int pos){
         //inserta el elemento nuevo en la posicion pos
         //detecta y reporta error posicion invalida
