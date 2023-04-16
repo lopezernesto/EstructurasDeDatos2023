@@ -1,10 +1,13 @@
+package tests.lineales.testing;
 
-package tests.lineales;
-//import lineales.estaticas.Cola;
-import lineales.dinamicas.Cola;
+	//import lineales.estaticas.Cola;
+	 import lineales.dinamicas.Cola;
+
+
 
 public class TestingCola {
-    
+
+
 	/**
 	 *
 	 * @author Catedra Estructuras de Datos
@@ -20,10 +23,10 @@ public class TestingCola {
 	public static void testCola() {
 		System.out.println("COMIENZO TEST COLA");
 		Cola q1 = new Cola();
-		System.out.println("Cola vac�a: \t\t\t\t\t\t\t--> " + q1.toString());
+		System.out.println("Cola vacia: \t\t\t\t\t\t\t--> " + q1.toString());
 		boolean exito = true;
 
-		System.out.println("Si es cola estatica tama�o <= 10 se debe llenar");
+		System.out.println("Si es cola estatica tamaño <= 10 se debe llenar");
 		int num = 1;
 		while (num < 12) {
 			if (num < 10) {
@@ -36,16 +39,10 @@ public class TestingCola {
 		}
 		System.out
 				.println("Recupera frente espera 1 recupera: \t\t\t" + (((int) q1.obtenerFrente() == 1) ? sOk : sErr));
-				
+
 		System.out.print("Saca espera true : \t\t\t\t\t" + ((q1.sacar() == true) ? sOk : sErr));
-
-
 		System.out.println("\t--> " + q1.toString());
-		
-		System.out.println("Recupera frente espera 2 recupera \t\t\t" + (((int) q1.obtenerFrente() == 2) ? sOk : sErr));//corta aca
-		System.out.println("CORTE");
-		
-
+		System.out.println("Recupera frente espera 2 recupera \t\t\t" + (((int) q1.obtenerFrente() == 2) ? sOk : sErr));
 		System.out.print("Saca espera true: \t\t\t\t\t" + ((q1.sacar() == true) ? sOk : sErr));
 		System.out.println("\t--> " + q1.toString());
 		System.out
@@ -77,7 +74,7 @@ public class TestingCola {
 
 		System.out.println("Verifica copia guardada espera [3 4 5 6 7 8 9 <10 11> 23 24]: \t--> " + q2.toString());
 		System.out.println(
-				"Pone 27 espera true en dinamica y false en estatica: \t" + ((q2.poner(27) == true) ? sOk : sErr));
+				"Pone 27 espera true en dinamica y false en estatica: \t" + ((q2.poner(27) == true)));
 		System.out.println("Verifica copia espera [3 4 5 6 7 8 9 <10 11> 23 24 <27>]: \t--> " + q2.toString());
 		System.out.println(
 				"Saca " + q2.obtenerFrente() + " de cola espera true: \t\t\t\t" + ((q2.sacar() == true) ? sOk : sErr));

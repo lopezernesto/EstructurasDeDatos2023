@@ -1,7 +1,14 @@
-package tests.lineales;
+package tests.lineales.testing;
 
-//import lineales.estaticas.Pila;
-import lineales.dinamicas.Pila;
+//import lineales.dinamicas.Pila;
+import lineales.estaticas.Pila;
+
+/**
+ *
+ * @author Catedra EDAT - FAI - UNCOMA 
+ * Ultima modificación: 22/04/2021
+ *
+ */
 public class TestingPila {
 
     static String sOk = "OK!", sErr = "ERROR";
@@ -14,7 +21,6 @@ public class TestingPila {
 
         System.out.println("COMIENZO TEST PILA");
         Pila p1 = new Pila();
-        
         System.out.println("\t\t\t\t\t\t\t\t--> " + p1.toString());
 
         System.out.print("Apila 1 espera TRUE y [1]:\t\t\t\t" + ((p1.apilar(1)) ? sOk : sErr));
