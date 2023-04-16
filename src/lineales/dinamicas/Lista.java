@@ -30,25 +30,26 @@ public class Lista {
         return exito;
     }
 
-    public boolean eliminar(int pos){
-        boolean exito=false;
-        if(!esVacia() || (pos>=1 && pos<=this.longitud)){
-            //Si mi lista no es vacia,  y pos es una posicion existente en la lista, entra al modulo
-                Nodo aux=this.cabecera;
-                int i=1;
-                while(i<pos){
-                    //recorro la lista hasta llegar al nodo anterior a pos
-                    aux=aux.getEnlace();
+    public boolean eliminar(int pos) {
+        boolean exito = false;
+        if (pos > 0 && pos <= this.longitud) {
+            if (pos == 1) {
+                this.cabecera = this.cabecera.getEnlace();
+            } else {
+                Nodo aux = this.cabecera;
+                int i = 1;
+                while (i < pos - 1) {
+                    aux = aux.getEnlace();
                     i++;
                 }
                 aux.setEnlace(aux.getEnlace().getEnlace());
-                exito=true;
-            //Avanzo 2 posiciones en mis nodos, borrando el nodo de en medio(pos)
-        }else{
-            exito=false;
+            }
+            exito = true;
+            longitud--;
         }
         return exito;
     }
+
     public int longitud(){
         return this.longitud;
     }
@@ -130,3 +131,5 @@ public class Lista {
         return s+"]";
     }
 }
+
+
