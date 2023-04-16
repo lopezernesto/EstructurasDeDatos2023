@@ -1,4 +1,4 @@
-package tests.lineales.testing;
+package tests.lineales;
 
 	//import lineales.estaticas.Cola;
 	 import lineales.dinamicas.Cola;
