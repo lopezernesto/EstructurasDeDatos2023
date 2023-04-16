@@ -4,11 +4,11 @@ public class Lista {
     private Nodo cabecera;
     private int longitud;
 
-    private Lista(){
+    public Lista(){
         this.cabecera=null;
         this.longitud=0;
     }
-    
+
     public boolean insertar(Object nuevoElem, int pos){
         //inserta el elemento nuevo en la posicion pos
         //detecta y reporta error posicion invalida
@@ -118,18 +118,12 @@ public class Lista {
         }
     }
     public String toString(){
-        String s="";
-        if(!esVacia()){
-            //Si mi lista no es vacia entra al modulo
-                Nodo aux=this.cabecera;
-                int i=0;
-                while(i<=longitud()){
-                    //recorro la lista hasta llegar a pos
-                    s=s+aux.getElem();
-                    aux=aux.getEnlace();
-                    i++;
-                } 
-        }
-        return s;
+        String s="[";
+        Nodo aux=this.cabecera;
+            while(aux != null){
+                s=s+aux.getElem()+"|";
+                aux=aux.getEnlace();
+            } 
+        return s+"]";
     }
 }
