@@ -1,7 +1,6 @@
 package tests.lineales;
 
-//import lineales.dinamicas.Lista;
-import lineales.estaticas.Lista;
+import lineales.dinamicas.Lista;
 
 /**
  * 

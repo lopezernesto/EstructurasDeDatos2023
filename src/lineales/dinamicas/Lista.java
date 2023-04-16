@@ -9,31 +9,27 @@ public class Lista {
         this.longitud=0;
     }
 
-    public boolean insertar(Object nuevoElem, int pos){
-        //inserta el elemento nuevo en la posicion pos
-        //detecta y reporta error posicion invalida
-        boolean exito=true;
-        if(pos<1  || pos >this.longitud()+1){
-            exito=false;
-        }else{
-            if(pos==1)//crea un nuevo nodo y se enlaza en la cabecera
-            {
-                this.cabecera=new Nodo(nuevoElem,this.cabecera);
-            }else{//avanza hasta el elemento en posicion pos-1
-                Nodo aux= this.cabecera;
-                int i=1;
-                while(i<pos-1){
-                    aux=aux.getEnlace();
+    public boolean insertar(Object nuevoElem, int pos) {
+        boolean exito = false;
+        if (pos > 0 && pos <= this.longitud + 1) {
+            if (pos == 1) {
+                cabecera = new Nodo(nuevoElem, this.cabecera);
+                exito = true;
+            } else {
+                Nodo aux = this.cabecera;
+                int i = 1;
+                while (i < pos - 1) {
+                    aux = aux.getEnlace();
                     i++;
                 }
-                //crea el nodo y lo enlaza
-                Nodo nuevo= new Nodo(nuevoElem,aux.getEnlace());
-                aux.setEnlace(nuevo);
+                aux.setEnlace(new Nodo(nuevoElem, aux.getEnlace()));
+                exito = true;
             }
+            longitud++;
         }
-        //lista es dinamica, no hay error de lista llena
         return exito;
     }
+
     public boolean eliminar(int pos){
         boolean exito=false;
         if(!esVacia() || (pos>=1 && pos<=this.longitud)){
@@ -66,35 +62,42 @@ public class Lista {
     public Object recuperar(int pos){
         Object recuperado=null;
 
-        if(!esVacia() || (pos>=1 && pos<=this.longitud)){
-            //Si mi lista no es vacia,  y pos es una posicion existente en la lista, entra al modulo
+        if(pos>=1 && pos<=this.longitud){
+            if(pos==1){
+                recuperado=this.cabecera.getElem();
+            }else{
                 Nodo aux=this.cabecera;
-                int i=1;
-                while(i<pos){
-                    //recorro la lista hasta llegar a pos
+                int i=0;
+                while(i<pos-2){
                     aux=aux.getEnlace();
                     i++;
                 }
-                recuperado=aux.getElem();
+                recuperado=aux.getEnlace().getElem();
+            }
         }
         return recuperado;
-    } 
-    public int localizar(Object buscado){
-        int pos=-1;
-        if(!esVacia() || (pos>=1 && pos<=this.longitud)){
-            //Si mi lista no es vacia,  y pos es una posicion existente en la lista, entra al modulo
-                Nodo aux=this.cabecera;
-                int i=1;
-                while(aux.getElem()==buscado){
-                    //recorro la lista hasta llegar al elemento buscado
-                    aux=aux.getEnlace();
-                    i++;
-                }
-                //se corta al llegar al elemento buscado
-                pos=1;
+    }
+
+
+    public int localizar(Object buscado) {
+        int pos = -1;
+        if (!this.esVacia()) {
+            int i = 1;
+            Nodo aux = this.cabecera;
+            while (aux != null && !aux.getElem().equals(buscado) ) {
+                //mientras no llegue al final y no encuentre el objeto avanzo
+                aux = aux.getEnlace();
+                i++;
+            }
+            if (aux != null) {
+                //si se corto porque encontro el objeto retorna el nodo donde se encuentra el buscado
+                pos = i;
+            }
         }
         return pos;
     }
+
+
     public Lista clone(){
         Lista listaClon= new Lista();
         if(!esVacia()){
