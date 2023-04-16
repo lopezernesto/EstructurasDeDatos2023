@@ -4,7 +4,7 @@ public class Lista {
     private Nodo cabecera;
     private int longitud;
 
-    private Lista(int longitud){
+    private Lista()){
         this.cabecera=null;
         this.longitud=0;
     }
@@ -95,7 +95,7 @@ public class Lista {
         return pos;
     }
     public Lista clone(){
-        Lista listaClon= new Lista(this.longitud);
+        Lista listaClon= new Lista();
         if(!esVacia()){
             listaClon.cabecera = new Nodo(this.cabecera.getElem(), null);
             //asigno a lista clon mi cabecera sin enlace
