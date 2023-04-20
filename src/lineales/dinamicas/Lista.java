@@ -181,19 +181,15 @@ public class Lista {
 
         return false;
     }
-    /*
-     * invertir: recibe una lista L y devuelve una lista nueva con los elementos de
-     * L invertidos. Ej: si
-     * L1=[2,4,6] debe devolver [6,4,2]
-     */
+    
     public Lista invertir(Lista l1){
          Lista listaInvertida = new Lista();
          listaInvertida.cabecera = new Nodo(l1.obtenerUltimoNodo(l1).getElem(), null);
         int i;
+        Nodo aux = listaInvertida.cabecera;
         for(i=l1.longitud();i>=0;i--){
-            
+            aux.setEnlace(new Nodo(l1.recuperar(i), aux.getEnlace()));
         }
-
          return listaInvertida;
     }
     /*
@@ -211,4 +207,5 @@ public class Lista {
         }
     }
      */
+
 }
