@@ -29,7 +29,6 @@ public class Lista {
         }
         return exito;
     }
-
     public boolean eliminar(int pos) {
         boolean exito = false;
         if (pos > 0 && pos <= this.longitud) {
@@ -62,7 +61,6 @@ public class Lista {
     }
     public Object recuperar(int pos){
         Object recuperado=null;
-
         if(pos>=1 && pos<=this.longitud){
             if(pos==1){
                 recuperado=this.cabecera.getElem();
@@ -130,6 +128,32 @@ public class Lista {
             } 
         return s+"]";
     }
+
+    /*
+     * concatenar: recibe dos listas L1 y L2 y devuelve una lista nueva con los elementos de L1 y L2
+concatenados. Ej: si L1=[2,4,6] y L2=[5,1,6,7] debe devolver [2,4,6,5,1,6,7
+     */
+    public Lista concatenar(Lista l1, Lista l2){
+        Lista listaConcatenada= new Lista(); 
+        listaConcatenada.cabecera=new Nodo(l1.cabecera.getElem(), null);
+        cloneAux(listaConcatenada.cabecera, l1.cabecera.getEnlace());
+        cloneAux(listaConcatenada.obtenerUltimoNodo(l1),l2.cabecera.getEnlace());
+        return listaConcatenada;
+    }
+
+    public Nodo obtenerUltimoNodo(Lista l1) {
+        if (l1.cabecera == null) {
+            return null; // la lista está vacía
+        } else {
+            Nodo nodoActual = l1.cabecera;
+            while (nodoActual.getEnlace() != null) {
+                nodoActual = nodoActual.getEnlace();
+            }
+            return nodoActual; // devuelve el último nodo
+        }
+    }
+    
+    
 }
 
 
