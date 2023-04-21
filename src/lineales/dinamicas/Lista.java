@@ -143,8 +143,8 @@ public class Lista {
         listaConcatenada.cabecera = new Nodo(l1.cabecera.getElem(), null);
         cloneAux(listaConcatenada.cabecera, l1.cabecera.getEnlace());
         aux= listaConcatenada.obtenerUltimoNodo(listaConcatenada);
-        aux.setEnlace(new Nodo((l2.cabecera).getElem(), aux.getEnlace()));
-        for(int i=2;i<=l2.longitud();i++){
+        
+        for(int i=1;i<=l2.longitud();i++){
             aux.setEnlace(new Nodo(l2.recuperar(i), aux.getEnlace()));
         }
         

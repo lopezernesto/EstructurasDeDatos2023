@@ -26,7 +26,7 @@ public class TestListaHarry {
         System.out.println("Lista 2:"+lista2.toString());
         //System.out.println("Lista 1 invertida: "+(lista1.invertir(lista1)).toString());
         Lista lista3= new Lista();
-        lista3=lista3.concatenar(lista1, lista2);
+        lista3=lista3.concatenar(lista1, lista2.invertir(lista2));
         System.out.println("Lista 3: "+lista3.toString());
         
         
