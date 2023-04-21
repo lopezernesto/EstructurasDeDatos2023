@@ -1,4 +1,6 @@
 package tests.lineales;
+import java.util.List;
+
 import javax.swing.SpinnerDateModel;
 
 import lineales.dinamicas.Lista;
@@ -7,10 +9,9 @@ public class TestListaHarry {
         
         Lista lista1 = new Lista();
         Lista lista2 = new Lista();
-        /* for (int i = 1; i <= 5; i++) {
-            lista1.insertar(i, i);
-        }*/
-        System.out.println("Hola");
+         for (int i = 1; i <= 5; i++) {
+            lista2.insertar(i, i);
+        }
         lista1.insertar(0, 1);
         lista1.insertar(9, 2);
         lista1.insertar(8, 3);
@@ -21,9 +22,13 @@ public class TestListaHarry {
         lista1.insertar(3, 8);
         lista1.insertar(2, 9);
         lista1.insertar(1, 10);
-        System.out.println("Lista: "+lista1.toString());
+        System.out.println("Lista 1: "+lista1.toString());
+        System.out.println("Lista 2:"+lista2.toString());
+        //System.out.println("Lista 1 invertida: "+(lista1.invertir(lista1)).toString());
+        Lista lista3= new Lista();
+        lista3=lista3.concatenar(lista1, lista2);
+        System.out.println("Lista 3: "+lista3.toString());
         
-System.out.println("Lista invertida: "+(lista1.invertir(lista1)).toString());
         
     }
 }

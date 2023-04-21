@@ -8,7 +8,6 @@ public class Lista {
         this.cabecera = null;
         this.longitud = 0;
     }
-
     public boolean insertar(Object nuevoElem, int pos) {
         boolean exito = false;
         if (pos > 0 && pos <= this.longitud + 1) {
@@ -29,7 +28,6 @@ public class Lista {
         }
         return exito;
     }
-
     public boolean eliminar(int pos) {
         boolean exito = false;
         if (pos > 0 && pos <= this.longitud) {
@@ -49,20 +47,16 @@ public class Lista {
         }
         return exito;
     }
-
     public int longitud() {
         return this.longitud;
     }
-
     public boolean esVacia() {
         return longitud == 0;
     }
-
     public void vaciar() {
         this.cabecera = null;
-        this.longitud = 0; 
+        this.longitud = 0;
     }
-
     public Object recuperar(int pos) {
         Object recuperado = null;
         if (pos >= 1 && pos <= this.longitud) {
@@ -80,7 +74,6 @@ public class Lista {
         }
         return recuperado;
     }
-
     public int localizar(Object buscado) {
         int pos = -1;
         if (!this.esVacia()) {
@@ -99,7 +92,24 @@ public class Lista {
         }
         return pos;
     }
-    // a
+    public String toString() {
+        String s = "[";
+        Nodo aux = this.cabecera;
+        while (aux != null) {
+            s = s + aux.getElem() + "|";
+            aux = aux.getEnlace();
+        }
+        return s + "]";
+    }
+    public Lista invertir(Lista l1) {
+        Lista listaInvertida = new Lista();
+        int i, j = 1;
+        for (i = l1.longitud(); i > 0; i--) {
+            listaInvertida.insertar(l1.recuperar(i), j);
+            j++;
+        }
+        return listaInvertida;
+    }
 
     public Lista clone() {
         Lista listaClon = new Lista();
@@ -127,27 +137,11 @@ public class Lista {
         }
     }
 
-    public String toString() {
-        String s = "[";
-        Nodo aux = this.cabecera;
-        while (aux != null) {
-            s = s + aux.getElem() + "|";
-            aux = aux.getEnlace();
-        }
-        return s + "]";
-    }
-
-    /*
-     * concatenar: recibe dos listas L1 y L2 y devuelve una lista nueva con los
-     * elementos de L1 y L2
-     * concatenados. Ej: si L1=[2,4,6] y L2=[5,1,6,7] debe devolver [2,4,6,5,1,6,7
-     */
     public Lista concatenar(Lista l1, Lista l2) {
         Lista listaConcatenada = new Lista();
         listaConcatenada.cabecera = new Nodo(l1.cabecera.getElem(), null);
         cloneAux(listaConcatenada.cabecera, l1.cabecera.getEnlace());
-
-        cloneAux(listaConcatenada.obtenerUltimoNodo(l1), l2.cabecera.getEnlace());
+        //cloneAux(listaConcatenada.obtenerUltimoNodo(l1), l2.cabecera.getEnlace());
         return listaConcatenada;
     }
 
@@ -163,32 +157,9 @@ public class Lista {
         }
     }
 
-    /*
-     * comprobar: recibe una lista L1 cargada con dígitos (números enteros de 0 a 9)
-     * y verifica si los
-     * elementos que contiene tienen la forma cadena0cadena0cadena* (donde cadena*
-     * es cadena invertida).
-     * Ej: si L1=[9,6,5,0,9,6,5,0,5,6,9], cadena=965, luego cadena*=569, entonces la
-     * lista L1 cumple con la
-     * condición deseada.
-     * Atención: la longitud de cada cadena no se conoce de antemano, hay que identi
-     * carla por la primera
-     * posición de 0 en la lista.
-     * Nota: Utilizar una Pila y una Cola como estructuras auxiliares.
-     */
     public boolean comprobar(Lista l1) {
         boolean exito = false;
 
         return false;
-    }
-    
-    public Lista invertir(Lista l1){
-        Lista listaInvertida = new Lista();
-        int i,j=1;
-        for(i=l1.longitud();i>0;i--){
-            listaInvertida.insertar(l1.recuperar(i),j );
-            j++;
-        }
-         return listaInvertida;
     }
 }
