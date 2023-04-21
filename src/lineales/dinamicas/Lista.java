@@ -60,7 +60,7 @@ public class Lista {
 
     public void vaciar() {
         this.cabecera = null;
-        this.longitud = 0;
+        this.longitud = 0; 
     }
 
     public Object recuperar(int pos) {
@@ -183,29 +183,12 @@ public class Lista {
     }
     
     public Lista invertir(Lista l1){
-         Lista listaInvertida = new Lista();
-         listaInvertida.cabecera = new Nodo(l1.obtenerUltimoNodo(l1).getElem(), null);
-        int i;
-        Nodo aux = listaInvertida.cabecera;
-        for(i=l1.longitud();i>=0;i--){
-            aux.setEnlace(new Nodo(l1.recuperar(i), aux.getEnlace()));
+        Lista listaInvertida = new Lista();
+        int i,j=1;
+        for(i=l1.longitud();i>0;i--){
+            listaInvertida.insertar(l1.recuperar(i),j );
+            j++;
         }
          return listaInvertida;
     }
-    /*
-     * private void cloneAux(Nodo nodoTemp, Nodo nodoEnlace) {
-        // modulo recursivo para clonar una estructuira dinamica de Nodos
-        // nodoTemp es usado para construir el clon, nodoEnlace es el nodo actual de la
-        // cola
-        if (nodoEnlace != null) {
-            // condicion de salida que se llegue al final de la estructura
-            nodoTemp.setEnlace(new Nodo(nodoEnlace.getElem(), null));
-            // crea el siguiente nodo de nodoTemp con el valor del nodoEnlace.
-            cloneAux(nodoTemp.getEnlace(), nodoEnlace.getEnlace());
-            // llama al modulo con el nodo recien Creado y el siguiente nodo de la
-            // estructura
-        }
-    }
-     */
-
 }
