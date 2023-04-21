@@ -21,7 +21,7 @@ public class TestListaHarry {
         lista1.insertar(4, 7);
         lista1.insertar(3, 8);
         lista1.insertar(2, 9);
-        lista1.insertar(1, 10);
+        lista1.insertar(0, 10);
         System.out.println("Lista 1: "+lista1.toString());
         System.out.println("Lista 2:"+lista2.toString());
         //System.out.println("Lista 1 invertida: "+(lista1.invertir(lista1)).toString());
