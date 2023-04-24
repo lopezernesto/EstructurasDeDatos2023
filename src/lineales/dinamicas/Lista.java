@@ -8,6 +8,7 @@ public class Lista {
         this.cabecera = null;
         this.longitud = 0;
     }
+
     public boolean insertar(Object nuevoElem, int pos) {
         boolean exito = false;
         if (pos > 0 && pos <= this.longitud + 1) {
@@ -28,6 +29,7 @@ public class Lista {
         }
         return exito;
     }
+
     public boolean eliminar(int pos) {
         boolean exito = false;
         if (pos > 0 && pos <= this.longitud) {
@@ -47,16 +49,20 @@ public class Lista {
         }
         return exito;
     }
+
     public int longitud() {
         return this.longitud;
     }
+
     public boolean esVacia() {
         return longitud == 0;
     }
+
     public void vaciar() {
         this.cabecera = null;
         this.longitud = 0;
     }
+
     public Object recuperar(int pos) {
         Object recuperado = null;
         if (pos >= 1 && pos <= this.longitud) {
@@ -74,6 +80,7 @@ public class Lista {
         }
         return recuperado;
     }
+
     public int localizar(Object buscado) {
         int pos = -1;
         if (!this.esVacia()) {
@@ -92,6 +99,7 @@ public class Lista {
         }
         return pos;
     }
+
     public String toString() {
         String s = "[";
         Nodo aux = this.cabecera;
@@ -101,6 +109,7 @@ public class Lista {
         }
         return s + "]";
     }
+
     public Lista invertir(Lista l1) {
         Lista listaInvertida = new Lista();
         int i, j = 1;
@@ -139,29 +148,15 @@ public class Lista {
 
     public Lista concatenar(Lista l1, Lista l2) {
         Lista listaConcatenada = new Lista();
-        listaConcatenada= l1.clone();
-        for(int i=1; i<= l2.longitud();i++){
-            Object elem= l2.recuperar(i);
-            listaConcatenada.insertar(elem, l1.longitud()+i);
+        listaConcatenada = l1.clone();
+        for (int i = 1; i <= l2.longitud(); i++) {
+            Object elem = l2.recuperar(i);
+            listaConcatenada.insertar(elem, l1.longitud() + i);
         }
         return listaConcatenada;
-        
-    }
-    /*
-     * public ListaDinamica concatenar(ListaDinamica l1, ListaDinamica L2) {
-        ListaDinamica newLista;
-        newLista = l1.clone();
-        Nodo auxL2 = L2.cabecera;
-        for (int i = 1; i <= L2.longitud(); i++) {
 
-            Object elem = L2.recuperar(i);
-            newLista.insertar(elem, l1.longitud() + i);
-
-        }
-        return newLista;
     }
 
-     */
     public Nodo obtenerUltimoNodo(Lista l1) {
         if (l1.cabecera == null) {
             return null; // la lista está vacía
@@ -174,9 +169,52 @@ public class Lista {
         }
     }
 
+    /*
+     * verifica si los elementos que contiene tienen la forma cadena0cadena0cadena*
+     * (donde cadena* es cadena invertida).
+     * Atención: la longitud de cada cadena no se conoce de antemano, hay que
+     * identificarla por la primera posición de 0 en la lista.
+     * Nota: Utilizar una Pila y una Cola como estructuras auxiliares.
+     */
     public boolean comprobar(Lista l1) {
         boolean exito = false;
+        Lista nuevaLista = new Lista();
+        int dist1 = l1.localizar(0);
+        int dist2 = 2 * dist1;
+        int j = dist1 - 1;
+        // Calcula la longitud de la lista y localiza los dos 0 de la lista
+        // Parte 1
+        // Copio la lista ingresada por parametro a la lista nueva, hasta donde hallle
+        // el 1er 0, alli va a estar mi primera parte" cadena0
+        for (int i = 1; i < dist1; i++) {
+            nuevaLista.insertar(l1.recuperar(i), i);
+        }
+        nuevaLista.insertar(0, dist1);
+        // Parte 2
+        // Inserto el 0 asi tener forma adena0
+        // Ahora que tenemos la forma cadena0 hay que ahcer la otra parte cadena0
+        for (int i = nuevaLista.longitud() + 1; i < dist2; i++) {
+            nuevaLista.insertar(l1.recuperar(i - dist1), i);
+        }
+        // Agrega el segundo 0, luego de concatenar PRIMERA y SEGUNDA PARTE
+        nuevaLista.insertar(0, dist2);
+        // Ya tenemos forma cadena0cadena0
+        // Parte 3
+        // Insertamos en la Lista nueva, de la misma forma quie en parte 1 pero en orden
+        // inverso
+        for (int i = (dist2 + 1); i < (3 * dist1); i++) {
+            nuevaLista.insertar(l1.recuperar(j), i);
+            j--;
+        }
+        // Ya tenemos la lista copiada de la forma cadena0cadena0cadena*
+        // ahora queda comprobar
 
-        return false;
+        int w = 1;
+        while (w <= nuevaLista.longitud() && exito) {
+            exito = nuevaLista.recuperar(w) == l1.recuperar(w);
+            w++;
+        }
+
+        return exito;
     }
 }
