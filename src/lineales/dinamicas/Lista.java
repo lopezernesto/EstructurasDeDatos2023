@@ -139,19 +139,29 @@ public class Lista {
 
     public Lista concatenar(Lista l1, Lista l2) {
         Lista listaConcatenada = new Lista();
-        Nodo aux;
-        listaConcatenada.cabecera = new Nodo(l1.cabecera.getElem(), null);
-        cloneAux(listaConcatenada.cabecera, l1.cabecera.getEnlace());
-        
-        aux= listaConcatenada.obtenerUltimoNodo(listaConcatenada);
-
-        for(int i=1;i<=l2.longitud();i++){
-            aux.setEnlace(new Nodo(l2.recuperar(i), aux.getEnlace()));
+        listaConcatenada= l1.clone();
+        for(int i=1; i<= l2.longitud();i++){
+            Object elem= l2.recuperar(i);
+            listaConcatenada.insertar(elem, l1.longitud()+i);
         }
-        
         return listaConcatenada;
+        
+    }
+    /*
+     * public ListaDinamica concatenar(ListaDinamica l1, ListaDinamica L2) {
+        ListaDinamica newLista;
+        newLista = l1.clone();
+        Nodo auxL2 = L2.cabecera;
+        for (int i = 1; i <= L2.longitud(); i++) {
+
+            Object elem = L2.recuperar(i);
+            newLista.insertar(elem, l1.longitud() + i);
+
+        }
+        return newLista;
     }
 
+     */
     public Nodo obtenerUltimoNodo(Lista l1) {
         if (l1.cabecera == null) {
             return null; // la lista está vacía
