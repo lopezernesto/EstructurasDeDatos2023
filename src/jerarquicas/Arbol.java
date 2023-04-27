@@ -67,9 +67,9 @@ public class Arbol {
     private int nivelAux(Object buscado, NodoArbol nodoAux){
         int resultado;
             if(buscado!=nodoAux.getElem()){
-                resultado= altura(nodoAux.getIzquierdo());
+                resultado=altura(nodoAux.getIzquierdo())+1;
             }else{
-                resultado=altura(nodoAux.getDerecho());
+                resultado=altura(nodoAux.getDerecho())+1;
             }
         return resultado;
     }
