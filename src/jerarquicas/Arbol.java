@@ -29,7 +29,6 @@ public class Arbol {
         }
         return exito;
     }
-
     private NodoArbol obtenerNodo(NodoArbol n,Object buscado){
         //metodo PRIVADO, busca un elem y devuelve el nodo que lo contiene, o de lo contrario null
         NodoArbol resultado=null;
@@ -47,4 +46,26 @@ public class Arbol {
         }
         return resultado;
     }
+    public int altura(NodoArbol nodoActual){
+        int alturaIzquierdo;
+        int alturaDerecho;
+            if(nodoActual==null){
+                return 0;
+                //caso base, altura=0 entonces llegamos a una hoja
+            }
+        alturaIzquierdo=altura(nodoActual.getIzquierdo());
+        //paso recursivo, consigo la altura del hijo izquierdo de mi nodo actual
+        alturaDerecho=altura(nodoActual.getDerecho());
+        return Math.max(alturaIzquierdo,alturaDerecho)+1;
+        //retorna la altura +1(caso base=0 entonces altura padre de la hoja(caso base)=0+1)
+    }
+    public int nivel(Object buscado){
+            int resultado=-1;
+            
+            return resultado;
+    }
+    public boolean esVacio(){
+        return this.raiz==null;
+    }
+
 }
