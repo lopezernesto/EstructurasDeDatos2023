@@ -2,7 +2,6 @@ package jerarquicas;
 
 public class Arbol {
     private NodoArbol raiz;
-
     public Arbol(){
         this.raiz=null;
     }
@@ -61,11 +60,58 @@ public class Arbol {
     }
     public int nivel(Object buscado){
             int resultado=-1;
-            
+            resultado= nivelAux(buscado, raiz);
             return resultado;
+    }
+
+    private int nivelAux(Object buscado, NodoArbol nodoAux){
+        int resultado;
+            if(buscado!=nodoAux.getElem()){
+                resultado= altura(nodoAux.getIzquierdo());
+            }else{
+                resultado=altura(nodoAux.getDerecho());
+            }
+        return resultado;
     }
     public boolean esVacio(){
         return this.raiz==null;
+    }
+
+    public String toString() {
+        String cad = " ";
+        if (this.raiz == null) {
+            cad = "el arbol esta vacio";
+        } else {
+            cad = toStringAux(this.raiz);
+        }
+        return cad;
+    }
+
+    private String toStringAux(NodoArbol nodo) {
+        String mensaje = "";
+        if (nodo != null) {
+            mensaje = "\n NODO: " + nodo.getElem() + mensaje;
+            if (nodo.getIzquierdo() != null) {
+                mensaje = mensaje + " HI:" + (nodo.getIzquierdo().getElem());
+            } else {
+                mensaje = mensaje + " HI: - ";
+            }
+            if (nodo.getDerecho() != null) {
+                mensaje = mensaje + (" HD:" + nodo.getDerecho().getElem());
+            } else {
+                mensaje = mensaje + " HD: - ";
+            }
+        }
+
+        if (nodo.getIzquierdo() != null) {
+            mensaje = mensaje + toStringAux(nodo.getIzquierdo());
+        }
+
+        if (nodo.getDerecho() != null) {
+            mensaje = mensaje + toStringAux(nodo.getDerecho());
+        }
+
+        return mensaje;
     }
 
 }
