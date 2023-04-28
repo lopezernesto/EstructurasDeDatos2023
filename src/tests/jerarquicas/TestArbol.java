@@ -1,5 +1,5 @@
 package tests.jerarquicas;
-import javax.rmi.CORBA.Stub;
+import javax.swing.SpringLayout;
 
 import jerarquicas.*;
 public class TestArbol {
@@ -18,6 +18,7 @@ public class TestArbol {
         arbol1.insertar(10, 11, 'D');
 
         System.out.println(arbol1.toString());
+        System.out.println("La altura del arbol es: "+arbol1.altura());
         System.out.println("Nivel debe ser 5: "+arbol1.nivel(11));
         System.out.println("El padre  debe ser 9: "+arbol1.padre(11));
     }
