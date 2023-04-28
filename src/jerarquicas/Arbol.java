@@ -94,11 +94,14 @@ public class Arbol {
     }
 
     public Object padre(Object elemento){
-        Object elemPadre;
-            if(elemento!=null){
-                elemPadre=padreAux(elemento,this.raiz);
+        // Dado un elemento devuelve el valor almacenado en su nodo padre (busca la primera aparición de elemento).
+        Object resultado = null;
+        if (this.raiz != null) {
+            if (this.raiz.getElem() != elemento) {
+                resultado = padreAux(elemento,this.raiz);
             }
-        return elemPadre;
+        }
+        return resultado;
 
     }
     private Object padreAux(Object elemento, NodoArbol nodoAux){
@@ -107,6 +110,17 @@ public class Arbol {
             if(nodoAux.getIzquierdo()!=null && resultado==null){
                  if((nodoAux.getIzquierdo().getElem() == (elemento))) {
                     resultado = nodoAux.getElem();
+                }
+            }
+            if(nodoAux.getDerecho()!=null && resultado==null){
+                if(nodoAux.getIzquierdo().getElem()==elemento){
+                    resultado=nodoAux.getElem();
+                }
+            }
+            if(resultado==null){
+                resultado=padreAux(elemento, nodoAux.getDerecho());
+                if(resultado==null){
+                    resultado=padreAux(elemento, nodoAux.getIzquierdo());
                 }
             }
         }

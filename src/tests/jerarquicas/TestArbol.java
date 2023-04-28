@@ -1,4 +1,6 @@
 package tests.jerarquicas;
+import javax.rmi.CORBA.Stub;
+
 import jerarquicas.*;
 public class TestArbol {
     public static void main(String[] arg){
@@ -17,5 +19,6 @@ public class TestArbol {
 
         System.out.println(arbol1.toString());
         System.out.println("Nivel debe ser 5: "+arbol1.nivel(11));
+        System.out.println("El padre  debe ser 9: "+arbol1.padre(11));
     }
 }
