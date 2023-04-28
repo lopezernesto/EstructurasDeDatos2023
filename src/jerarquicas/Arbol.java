@@ -45,34 +45,75 @@ public class Arbol {
         }
         return resultado;
     }
-    public int altura(NodoArbol nodoActual){
+    public int alturaAux(NodoArbol nodoActual){
         int alturaIzquierdo;
         int alturaDerecho;
             if(nodoActual==null){
-                return 0;
+                return -1;
                 //caso base, altura=0 entonces llegamos a una hoja
             }
-        alturaIzquierdo=altura(nodoActual.getIzquierdo());
+        alturaIzquierdo=alturaAux(nodoActual.getIzquierdo());
         //paso recursivo, consigo la altura del hijo izquierdo de mi nodo actual
-        alturaDerecho=altura(nodoActual.getDerecho());
+        alturaDerecho=alturaAux(nodoActual.getDerecho());
         return Math.max(alturaIzquierdo,alturaDerecho)+1;
         //retorna la altura +1(caso base=0 entonces altura padre de la hoja(caso base)=0+1)
     }
-    public int nivel(Object buscado){
-            int resultado=-1;
-            resultado= nivelAux(buscado, raiz);
-            return resultado;
+    public int altura(){
+        return alturaAux(this.raiz);
     }
 
-    private int nivelAux(Object buscado, NodoArbol nodoAux){
-        int resultado;
-            if(buscado!=nodoAux.getElem()){
-                resultado=altura(nodoAux.getIzquierdo())+1;
-            }else{
-                resultado=altura(nodoAux.getDerecho())+1;
+    public int nivel(Object buscado){
+        //devuelve el nivel dodne se ecneuntra el nodo que buscamos
+        int niv=-1;
+        //inicializa en -1
+            if(this.raiz!=null){
+                //si mi raiz no es nula entra
+                niv= nivelAux(this.raiz, buscado,0);
             }
+            return niv;   
+    }
+
+    private int nivelAux(NodoArbol nodoAux,Object buscado,int profundidad){
+        int nivel=-1;   
+        if(nodoAux!=null){
+            //condicion base 1 que mi nodo exista
+            if(nodoAux.getElem()!=buscado){
+                //condicion base 2 que el element que busco todavia no haya sido encontrado
+                nivel= nivelAux(nodoAux.getIzquierdo(), buscado, profundidad+1);
+                //pruebo or el lado izquierdo
+                if(nivel==-1){
+                    //si devuelve -1, en el lado izquierdo no estaba, me voy parael derecho
+                    nivel=nivelAux(nodoAux.getDerecho(), buscado, profundidad+1);
+                }
+            }else{
+                //si lo encuentro devuelvo la profundidad que fui iterand en cada llamado
+                nivel=profundidad;
+            }
+        }
+        return nivel;
+    }
+
+    public Object padre(Object elemento){
+        Object elemPadre;
+            if(elemento!=null){
+                elemPadre=padreAux(elemento,this.raiz);
+            }
+        return elemPadre;
+
+    }
+    private Object padreAux(Object elemento, NodoArbol nodoAux){
+        Object resultado=null;
+        if(nodoAux!=null){
+            if(nodoAux.getIzquierdo()!=null && resultado==null){
+                 if((nodoAux.getIzquierdo().getElem() == (elemento))) {
+                    resultado = nodoAux.getElem();
+                }
+            }
+        }
         return resultado;
     }
+
+
     public boolean esVacio(){
         return this.raiz==null;
     }

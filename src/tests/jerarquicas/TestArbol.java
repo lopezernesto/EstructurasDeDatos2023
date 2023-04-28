@@ -12,8 +12,10 @@ public class TestArbol {
         arbol1.insertar(8, 7, 'I');
         arbol1.insertar(9, 8, 'I');
         arbol1.insertar(11, 9, 'I');
+        arbol1.insertar(12, 9, 'D');
+        arbol1.insertar(10, 11, 'D');
+
         System.out.println(arbol1.toString());
         System.out.println("Nivel debe ser 5: "+arbol1.nivel(11));
     }
-        
 }
