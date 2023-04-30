@@ -207,6 +207,26 @@ public class Arbol {
                 lis.insertar(nodo.getElem(), lis.longitud() + 1);
             }
         }
-    
+        public Lista listarNiveles(){
+            Lista lis= new Lista();
+            lis.insertar(this.raiz.getElem(),  1);
+            listarNivelesAux(this.raiz,lis);
+            return lis;
+        }
+        private void listarNivelesAux(NodoArbol nodo, Lista lis){
+            
+            if(nodo != null){
+                
+                if (nodo.getIzquierdo() != null){
+                    lis.insertar((nodo.getIzquierdo()).getElem(), lis.longitud() + 1);
+                }
+                if (nodo.getDerecho() != null){
+                    lis.insertar((nodo.getDerecho()).getElem(), lis.longitud() + 1);
+                }
+                listarNivelesAux(nodo.getIzquierdo(), lis);
+                listarNivelesAux(nodo.getDerecho(), lis);
+            }
+        }
+  
 
 }

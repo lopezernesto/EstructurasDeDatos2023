@@ -28,6 +28,7 @@ public class TestArbol {
 
         System.out.println("El recorrido en PosOrden del arbnol es: "+(arbol1.listarPosorden()).toString());
         
+        System.out.println("El arbol listado por niveles se veria asi: "+ (arbol1.listarNiveles()).toString() );
 
     }
 }
