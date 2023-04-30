@@ -1,8 +1,8 @@
 package jerarquicas;
 import lineales.dinamicas.*;
-public class Arbol {
+public class ArbolBin {
     private NodoArbol raiz;
-    public Arbol(){
+    public ArbolBin(){
         this.raiz=null;
     }
     public boolean insertar(Object elemNuevo, Object elemPadre, char lugar){
@@ -226,6 +226,13 @@ public class Arbol {
                 listarNivelesAux(nodo.getIzquierdo(), lis);
                 listarNivelesAux(nodo.getDerecho(), lis);
             }
+        }
+        public ArbolBin clonar(){
+            ArbolBin arbolClon = new ArbolBin();
+
+
+
+            return arbolClon;
         }
   
 
