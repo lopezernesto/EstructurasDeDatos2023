@@ -1,5 +1,5 @@
 package jerarquicas;
-
+import lineales.dinamicas.*;
 public class Arbol {
     private NodoArbol raiz;
     public Arbol(){
@@ -104,6 +104,7 @@ public class Arbol {
         return resultado;
 
     }
+    //commit padre
     private Object padreAux(Object elemento, NodoArbol nodoAux){
         Object resultado=null;
         if(nodoAux!=null){
@@ -168,5 +169,44 @@ public class Arbol {
 
         return mensaje;
     }
+
+    public Lista listarPreorden(){
+        Lista lis= new Lista();
+        listarPreordenAux(this.raiz,lis);
+        return lis;
+    }
+    private void listarPreordenAux(NodoArbol nodo, Lista lis){
+        if(nodo!=null){
+            //visita el elemento en el nodo
+            lis.insertar(nodo.getElem(), lis.longitud()+1);
+            listarPreordenAux(nodo.getIzquierdo(), lis);
+            listarPreordenAux(nodo.getDerecho(), lis);
+        }
+    }
+        public Lista listarInorden(){
+            Lista lis= new Lista();
+            listarInordenAux(this.raiz,lis);
+            return lis;
+        }
+        private void listarInordenAux(NodoArbol nodo, Lista lis){
+            if (nodo != null) {
+                listarInordenAux(nodo.getIzquierdo(), lis);
+                lis.insertar(nodo.getElem(), lis.longitud() + 1);
+                listarInordenAux(nodo.getDerecho(), lis);
+            }
+        }
+        public Lista listarPosorden(){
+            Lista lis= new Lista();
+            listarPosordenAux(this.raiz,lis);
+            return lis;
+        }
+        private void listarPosordenAux(NodoArbol nodo, Lista lis){
+            if(nodo!=null){
+                listarPosordenAux(nodo.getIzquierdo(), lis);
+                listarPosordenAux(nodo.getDerecho(), lis);
+                lis.insertar(nodo.getElem(), lis.longitud() + 1);
+            }
+        }
+    
 
 }
