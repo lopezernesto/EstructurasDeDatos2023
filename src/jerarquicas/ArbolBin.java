@@ -136,7 +136,7 @@ public class ArbolBin {
     public String toString() {
         String cad = " ";
         if (this.raiz == null) {
-            cad = "el arbol esta vacio";
+            cad = "El arbol esta vacio";
         } else {
             cad = toStringAux(this.raiz);
         }
@@ -227,12 +227,22 @@ public class ArbolBin {
                 listarNivelesAux(nodo.getDerecho(), lis);
             }
         }
-        public ArbolBin clonar(){
+        public ArbolBin clonar( ){
             ArbolBin arbolClon = new ArbolBin();
-
-
-
+            if(!esVacio()){
+                arbolClon.raiz=clonarAux(raiz);
+            }
             return arbolClon;
+        }
+        private NodoArbol clonarAux(NodoArbol nodo){
+            if(nodo==null){
+                return null;
+            }
+            NodoArbol nodoClon=new NodoArbol(nodo.getElem(), (clonarAux(nodo.getIzquierdo())), (clonarAux(nodo.getDerecho())));
+            return nodoClon;
+        }
+        public void vaciar(){
+            this.raiz=null;
         }
   
 

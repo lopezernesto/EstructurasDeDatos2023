@@ -24,11 +24,19 @@ public class TestArbol {
         //System.out.println("El padre  debe ser 9: "+arbol1.padre(11));
         System.out.println("El recorrido en PreOrden del arbnol es: "+(arbol1.listarPreorden()).toString());
         //funciona
-        System.out.println("El recorrido en Inorden del arbnol es: "+(arbol1.listarInorden()).toString());
+        //System.out.println("El recorrido en Inorden del arbnol es: "+(arbol1.listarInorden()).toString());
 
-        System.out.println("El recorrido en PosOrden del arbnol es: "+(arbol1.listarPosorden()).toString());
+        //System.out.println("El recorrido en PosOrden del arbnol es: "+(arbol1.listarPosorden()).toString());
         
         System.out.println("El arbol listado por niveles se veria asi: "+ (arbol1.listarNiveles()).toString() );
-
+        ArbolBin arbolClon=new ArbolBin();
+        arbolClon=arbol1.clonar();
+        System.out.println("Arbol clon: ");
+        System.out.println(arbolClon.toString());
+        System.out.println("Recorrido Preorden de arbol clon: "+(arbolClon.listarPreorden()).toString());
+        System.out.println("El arbol Clon por niveles se ve asi: "+(arbolClon.listarNiveles()).toString());
+        System.out.println("Vaciamos el arbol");
+        arbol1.vaciar();
+        System.out.println(arbol1.toString());
     }
 }
