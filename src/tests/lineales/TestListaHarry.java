@@ -9,19 +9,15 @@ public class TestListaHarry {
         
         Lista lista1 = new Lista();
         
-        lista1.insertar(9, 1);
-        lista1.insertar(6, 2);
-        lista1.insertar(5, 3);
-        lista1.insertar(0, 4);
-        lista1.insertar(9, 5);
-        lista1.insertar(6, 6);
-        lista1.insertar(5, 7);
-        lista1.insertar(0, 8);
-        lista1.insertar(5, 9);
-        lista1.insertar(6, 10);
-        lista1.insertar(9, 11);
+        for(int i=1;i<10;i++){
+            lista1.insertar(i, i);
+        }
         System.out.println(lista1.toString());
-        System.out.println(lista1.comprobar(lista1));
+        
+        Lista lista2= lista1.obtenerMultiplos(2);
+        System.out.println(lista2.toString());
+        //lista1.eliminarApariciones(6);
+        //System.out.println(lista1.toString());
         
         //9,6,5,0,9,6,5,0,5,6,9
         

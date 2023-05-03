@@ -168,53 +168,41 @@ public class Lista {
             return nodoAux; // devuelve el último nodo
         }
     }
+    
+        
 
-    /*
-     * verifica si los elementos que contiene tienen la forma cadena0cadena0cadena*
-     * (donde cadena* es cadena invertida).
-     * Atención: la longitud de cada cadena no se conoce de antemano, hay que
-     * identificarla por la primera posición de 0 en la lista.
-     * Nota: Utilizar una Pila y una Cola como estructuras auxiliares.
-     */
-    public boolean comprobar(Lista l1) {
-        boolean exito = false;
-        Lista nuevaLista = new Lista();
-        int dist1 = l1.localizar(0);
-        int dist2 = 2 * dist1;
-        int j = dist1 - 1;
-        // Calcula la longitud de la lista y localiza los dos 0 de la lista
-        // Parte 1
-        // Copio la lista ingresada por parametro a la lista nueva, hasta donde hallle
-        // el 1er 0, alli va a estar mi primera parte" cadena0
-        for (int i = 1; i < dist1; i++) {
-            nuevaLista.insertar(l1.recuperar(i), i);
+    public Lista obtenerMultiplos(int x) {
+        Lista lis = new Lista();
+        if(this.cabecera!=null){
+            lis.cabecera=obtenerMultiplosAux(this.cabecera,x,1);
         }
-        nuevaLista.insertar(0, dist1);
-        // Parte 2
-        // Inserto el 0 asi tener forma adena0
-        // Ahora que tenemos la forma cadena0 hay que ahcer la otra parte cadena0
-        for (int i = nuevaLista.longitud() + 1; i < dist2; i++) {
-            nuevaLista.insertar(l1.recuperar(i - dist1), i);
+        return lis;
+    }
+    private Nodo obtenerMultiplosAux(Nodo nodo, int x, int pos){
+        Nodo nuevo=null;
+        if(nodo!=null){
+            if(pos%x==0){
+                //si es multiplo creo un nuevo nodo con el elemento
+                nuevo= new Nodo(nodo.getElem(), null);
+                nuevo.setEnlace(obtenerMultiplosAux(nodo.getEnlace(), x, pos+1));
+                //enlazo el nuevo nodo con el siguiente nodo que cumpla, avanzo 1 la posicion
+            }else{
+                nuevo=obtenerMultiplosAux(nodo.getEnlace(), x, pos+1);
+                //si no se cumplia la posicion avanzo en la lista
+            }
         }
-        // Agrega el segundo 0, luego de concatenar PRIMERA y SEGUNDA PARTE
-        nuevaLista.insertar(0, dist2);
-        // Ya tenemos forma cadena0cadena0
-        // Parte 3
-        // Insertamos en la Lista nueva, de la misma forma quie en parte 1 pero en orden
-        // inverso
-        for (int i = (dist2 + 1); i < (3 * dist1); i++) {
-            nuevaLista.insertar(l1.recuperar(j), i);
-            j--;
-        }
-        // Ya tenemos la lista copiada de la forma cadena0cadena0cadena*
-        // ahora queda comprobar
+        return nuevo;
+    }
+    
 
-        int w = 1;
-        while (w <= nuevaLista.longitud() && exito) {
-            exito = nuevaLista.recuperar(w) == l1.recuperar(w);
-            w++;
-        }
+    public void eliminarApariciones(Object x) {
+        Nodo aux = this.cabecera;
+        for (int i = 1; i <= this.longitud; i++) {
+            if (aux.getElem() == x) {
+                aux.setEnlace(aux.getEnlace());
 
-        return exito;
+            }
+            aux = aux.getEnlace();
+        }
     }
 }
