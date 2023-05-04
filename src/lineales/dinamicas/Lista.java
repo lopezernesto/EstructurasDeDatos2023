@@ -197,12 +197,17 @@ public class Lista {
 
     public void eliminarApariciones(Object x) {
         Nodo aux = this.cabecera;
-        for (int i = 1; i <= this.longitud; i++) {
-            if (aux.getElem() == x) {
-                aux.setEnlace(aux.getEnlace());
-
+        Nodo enlace=aux;
+        //usamos un nodo  para recorrer la listaq y otro para setear los enclaces
+        int i=1;
+        while(i<=this.longitud && aux.getEnlace()!=null){
+            if((aux.getEnlace()).getElem()==x){
+                enlace.setEnlace(aux.getEnlace().getEnlace());
+                
             }
-            aux = aux.getEnlace();
+            aux=aux.getEnlace();
+            i++;
         }
     }
 }
+ 
