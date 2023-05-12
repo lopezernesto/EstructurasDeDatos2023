@@ -201,9 +201,8 @@ public class Lista {
         //usamos un nodo  para recorrer la listaq y otro para setear los enclaces
         int i=1;
         while(i<=this.longitud && aux.getEnlace()!=null){
-            if((aux.getEnlace()).getElem()==x){
-                enlace.setEnlace(aux.getEnlace().getEnlace());
-                
+            if((aux.getEnlace()).getElem().equals(x)){
+                enlace.setEnlace(aux.getEnlace().getEnlace());    
             }
             aux=aux.getEnlace();
             i++;
