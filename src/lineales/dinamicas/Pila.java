@@ -88,4 +88,17 @@ public class Pila {
     return cadena;
   }
      */
+    public boolean equals(Pila p){
+        boolean rta=true;
+        Nodo aux=this.tope;
+        Nodo aux2=p.tope;
+        while(aux!=null && aux2!=null){
+            if(!(aux2.getElem().equals(aux.getElem()))){
+                rta=false;
+            }
+            aux=aux.getEnlace();
+            aux2=aux2.getEnlace();
+        }
+        return rta;
+    }
 }
