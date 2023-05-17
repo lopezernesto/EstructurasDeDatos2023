@@ -43,7 +43,7 @@ public class ArbolGen {
         return l;
     }
     private void ancestrosAux(Object elem, NodoGen n,Lista l){
-        
+
     }
 
     public boolean pertenece(Object elemento) {
@@ -79,7 +79,7 @@ public class ArbolGen {
             } else {
                 n = obtenerNodo(n.getHijoIzquierdo(), elem);
                 // avanza al hijo izquierdo
-                if (n == null) {
+                if (nodoTemp == null) {
                     nodoTemp = obtenerNodo(n.getHermanoDerecho(), elem);
                     // busca recursivamente en sus hermanos
                 }
