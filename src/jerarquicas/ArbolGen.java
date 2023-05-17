@@ -122,6 +122,39 @@ public class ArbolGen {
         return pos;
         
     }
+        public int altura() {
+        int aux = 0;
+            //si es vacio, su altura es 0
+        if (!esVacio()) {
+            aux = alturaAux(raiz);
+        }
+        return aux;
+    }
+
+    private int alturaAux(NodoGen nodo) {
+        int alt, altHermano = 0, altHijo = 0;
+        //si el nodo es hoja, empieza la cuenta para arriba
+        if (nodo == null) {
+            alt = 1;
+        } else {
+            //si tiene hijo busco en el hijo
+            if (nodo.getHijoIzquierdo() != null) {
+                altHijo = alturaAux(nodo.getHijoIzquierdo()) + 1;
+            }
+            //sino busco en el hermano
+            if (nodo.getHermanoDerecho() != null) {
+                altHermano = alturaAux(nodo.getHermanoDerecho()) + 1;
+            }
+            //si la altura del hijo es mayor a la del hermano, me quedo con la del hijo
+            if (altHijo > altHermano) {
+                alt = altHijo;
+            } else {
+                //sino, con la altura del subarbol del hermano
+                alt = altHermano;
+            }
+        }
+        return alt;
+    }
 
     public Lista listarInorden() {
         Lista l = new Lista();
