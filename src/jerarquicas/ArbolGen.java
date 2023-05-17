@@ -87,6 +87,41 @@ public class ArbolGen {
         }
         return nodoTemp;
     }
+    
+    public Object padre (Object elemento){
+        Object resultado;
+        NodoGen aux;
+        //caso especial: la primer aparicion del elem es la raiz (no tiene padre)
+        if(raiz.getElem().equals(elemento) || esVacio()){
+            resultado=null;
+        }
+        else{
+            aux=padreAux(elemento, this.raiz);
+            resultado=aux.getElem();
+        }
+        return resultado;
+    }
+    private NodoGen padreAux(Object elemento, NodoGen nodo){        
+        NodoGen pos=null;
+        //si no es vacio
+        if(nodo != null){
+            //si esta justo en el hijo izquierdo, guardo el nodo padre
+            if(nodo.getHijoIzquierdo().getElem().equals(elemento)){
+                pos=nodo;
+            }
+            else{
+                //sino busca en los demas hijos izquierdos
+                pos=padreAux(elemento, nodo.getHijoIzquierdo());
+            }                
+            if (pos==null){
+                //si pos e
+                pos=padreAux(elemento, nodo.getHermanoDerecho());
+            }
+        }
+        
+        return pos;
+        
+    }
 
     public Lista listarInorden() {
         Lista l = new Lista();
