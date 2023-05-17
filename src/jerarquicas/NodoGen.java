@@ -10,6 +10,7 @@ public class NodoGen {
         this.hijoIzquierdo=hijoIzquierdo;
         this.hermanoDerecho=hermanoDerecho;
     }
+    
     public Object getElem(){
         return this.elem;
     }
