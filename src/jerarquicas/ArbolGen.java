@@ -217,51 +217,37 @@ public class ArbolGen {
         }
         return nivel;
     }
-
-    public Lista listarPreorden(){
-        Lista l= new Lista();
-        listarPreordenAux(this.raiz,l);
-        return l;
+/*
+public boolean equals(ArbolGen unArbol) {
+        boolean iguales = false;
+        //de entrada suponemos que no son iguales, si su altura es la misma podrian llegar a ser iguales
+        if (unArbol.altura() == this.altura()) {
+            iguales = equalsAux(unArbol.raiz, this.raiz);
+        }
+        return iguales;
     }
 
-    private void listarPreordenAux(NodoGen n, Lista ls){
-        if(n!=null){
-            ls.insertar(n.getElem(), ls.longitud() + 1);
-            if (n.getHijoIzquierdo() != null) {
-                listarInordenAux(n.getHijoIzquierdo(), ls);
-            }
-            
-            if (n.getHijoIzquierdo() != null) {
-                NodoGen hijo = n.getHijoIzquierdo().getHermanoDerecho();
-                while (hijo != null) {
-                    listarInordenAux(hijo, ls);
-                    hijo = hijo.getHermanoDerecho();
+    private boolean equalsAux(NodoGen otro, NodoGen actual) {
+        boolean comparar = true;
+        //mientras sea verdadero entra
+        if (comparar) {
+            //compara los elementos, si no son iguales retorna falso, sino sigue
+            if (!otro.getElem().equals(actual.getElem())) {
+                comparar = false;
+            } else {
+                //llamo con el hijo mientras tenga hijos izquierdos
+                if (otro.getHijoIzquierdo() != null) {
+                    comparar = equalsAux(otro.getHijoIzquierdo(), actual.getHijoIzquierdo());                    
+                }
+                else{
+                    //cuando no hayan mas, comparo con los hermanos
+                    comparar=equalsAux(otro.getHermanoDerecho(),actual.getHermanoDerecho());
                 }
             }
         }
+        return comparar;
     }
-    public Lista listarPosorden(){
-        Lista l = new Lista();
-        listarPosordenAux(this.raiz, l);
-        return l;
-    }
-
-    private void listarPosordenAux(NodoGen n, Lista ls){
-        if(n!=null){
-            if (n.getHijoIzquierdo() != null) {
-                listarInordenAux(n.getHijoIzquierdo(), ls);
-            }
-            
-            if (n.getHijoIzquierdo() != null) {
-                NodoGen hijo = n.getHijoIzquierdo().getHermanoDerecho();
-                while (hijo != null) {
-                    listarInordenAux(hijo, ls);
-                    hijo = hijo.getHermanoDerecho();
-                }
-            }
-            ls.insertar(n.getElem(), ls.longitud() + 1);
-        }
-    }
+*/
 
     public Lista listarInorden() {
         Lista l = new Lista();
@@ -287,17 +273,6 @@ public class ArbolGen {
         }
     }
 
-
-    public Lista listarPorNiveles(){
-        Lista l= new Lista();
-        listarPorNivelesAux(this.raiz,l);
-        return l;
-    }
-
-    private void listarPorNivelesAux(NodoGen n, Lista ls){
-        
-    }
-    
     public String toString() {
         return toStringAux(this.raiz);
     }
