@@ -11,19 +11,31 @@ public class ArbolGen {
 
     public boolean insertar(Object hijo, Object elemPadre) {
         boolean exito = false;
-
+        NodoGen nodoNuevo=new NodoGen(hijo, null, null);
         if (esVacio()) {
             this.raiz = new NodoGen(hijo, raiz, raiz);
             exito = true;
+            //si el arbol esta vacio, inserta el elemento en la raiz
         } else {
             NodoGen nodo = obtenerNodo(this.raiz, elemPadre);
+            //utilizo el modulo obtenerNodo para buscar localizar el elemento padre que quiero
             if (nodo != null) {
+                //condicion que el nodo no sea nulo
                 if(nodo.getHijoIzquierdo()==null){
-                    nodo.setHijoIzquierdo(new NodoGen(hijo, null, null));
+                    nodo.setHijoIzquierdo(nodoNuevo);
+                    //si mi nodo padre no tiene hijo izquierdo lo inserto como nuevo hijo izquierdo
+                }else{
+                    nodo=nodo.getHijoIzquierdo();
+                    //si mi nodo Padre tiene hijos me paro en el hijo izquierdo y recorro sus hermanos
+                    while(nodo.getHermanoDerecho()!=null){
+                        nodo=nodo.getHermanoDerecho();
+                        //recorre los hermanos derechos hasta que llega al ultimo
+                    }
+                    nodo.setHermanoDerecho(nodoNuevo);
+                    //inserto como ultimo en los hermanos del hijo izquierdo
                 }
                 exito = true;
             }
-
         }
         return exito;
     }
@@ -75,11 +87,12 @@ public class ArbolGen {
                 // llegue al nodo que busco, se corta el ciclo
                 nodoTemp = n;
             } else {
-                n = obtenerNodo(n.getHijoIzquierdo(), elem);
-                // avanza al hijo izquierdo
+                nodoTemp = obtenerNodo(n.getHermanoDerecho(), elem);
+                // avanza por los hermanos derechos del nodo
                 if (nodoTemp == null) {
-                    nodoTemp = obtenerNodo(n.getHermanoDerecho(), elem);
-                    // busca recursivamente en sus hermanos
+                    nodoTemp = obtenerNodo(n.getHijoIzquierdo(), elem);
+                    //si no lo encontre entre  todos sus hermanos,avanzo al hijo izquierdo
+                    
                 }
             }
         }
