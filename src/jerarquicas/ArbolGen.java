@@ -43,17 +43,39 @@ public class ArbolGen {
     public boolean esVacio() {
         return this.raiz == null;
     }
+    public void vaciar(){
+        this.raiz=null;
+    }
 
     public Lista ancestros(Object elem) {
         Lista l = new Lista();
-        if (pertenece(elem) == true && !this.raiz.getElem().equals(elem)) {
+        if (!elem.equals(this.raiz.getElem())) {
             ancestrosAux(elem, this.raiz, l);
         }
         return l;
     }
 
-    private void ancestrosAux(Object elem, NodoGen n, Lista l) {
-
+    private boolean ancestrosAux(Object elem, NodoGen n, Lista l) {
+        boolean flag =false;
+        //flag es una variable de tipo booleana que verifica si el elemento que busco se encuentra en la subrama en la que estoy parado, en el mejor de los casos el elemento se encuentra en la raiz o en una de las primeras ramas izquierdas, en el peor de los casos recorro el arbol n^n veces
+        if(n!=null){
+            //siempre que el nodo sea distinto de nulo continuo
+            if(n.getElem().equals(elem)){
+                flag=true;
+                //si el elemento es encontrado mi bandera es verdadera
+            } else{
+                flag= ancestrosAux(elem, n.getHijoIzquierdo(), l);
+                //llamo recursivamente a los hijos izquierdos(despues de haber llamado a cada hermano de estos)
+                if(flag){
+                    l.insertar(n.getElem(), l.longitud()+1);
+                    //si estaba en el hijo izquierdo,inserto el elemento de n en la lista
+                }else{
+                    flag=ancestrosAux(elem, n.getHermanoDerecho(), l);
+                    //si no estaba en mi hijo izquierdo llamo recursivamente a los hermanos derechos de este
+                }
+            }
+        }
+        return flag;
     }
 
     public boolean pertenece(Object elemento) {

@@ -1,6 +1,7 @@
 package tests.jerarquicas;
 
 import jerarquicas.*;
+import lineales.dinamicas.Lista;
 
 public class TestArbolGenericoHarry {
     public static void main(String[] arg) {
@@ -14,8 +15,12 @@ public class TestArbolGenericoHarry {
             arbol1.insertar('F', 'B');
             arbol1.insertar('G', 'B');
             arbol1.insertar('H', 'D');
-            
+            arbol1.insertar('Z', 'E');
+            arbol1.insertar('Y', 'E');
+            arbol1.insertar('W', 'Z');
         System.out.println(arbol1.toString());
+        Lista l= arbol1.ancestros('W');
+        System.out.println(l.toString());
 
     }
 }
