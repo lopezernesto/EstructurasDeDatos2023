@@ -189,6 +189,36 @@ public class ArbolGen {
         return alt;
     }
 
+    public int nivel(Object buscado){
+        //devuelve el nivel dodne se ecneuntra el nodo que buscamos
+        int niv=-1;
+        //inicializa en -1
+            if(this.raiz!=null){
+                //si mi raiz no es nula entra
+                niv= nivelAux(this.raiz, buscado,0);
+            }
+            return niv;  
+    }
+
+    private int nivelAux(NodoGen n, Object buscado, int profundidad){
+        int nivel=-1;
+        if(n!=null){
+            if(n.getElem()!=buscado){
+                //condicion base 2 que el element que busco todavia no haya sido encontrado
+                nivel=nivelAux(n.getHermanoDerecho(), buscado, profundidad);
+                //llamo recursivamente a sus hermanos, la profundidad no varia, porque son hermanos, no hijos
+                if(nivel==-1){
+                    //si devuelve -1, en los hermanos no estaba,avanzo a los hijos
+                    nivel=nivelAux(n.getHijoIzquierdo(), buscado, profundidad+1);
+                }
+            }else{
+                nivel=profundidad;
+            }
+        }
+        return nivel;
+    }
+
+
     public Lista listarInorden() {
         Lista l = new Lista();
         listarInordenAux(this.raiz, l);
